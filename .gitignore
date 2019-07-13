@@ -3,3 +3,7 @@ Code/bin/*
 Code/obj/*
 Test/obj/*
 Test/bin/*
+Contract/obj/*
+Contract/bin/*
+Model/obj/*
+Model/bin/*

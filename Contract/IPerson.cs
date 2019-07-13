@@ -1,6 +1,6 @@
 using System;
 
-namespace Code
+namespace Contract
 {
     public interface IPerson
     {

@@ -1,6 +1,7 @@
-using System;
 
-namespace Code
+using Contract;
+
+namespace Model
 {
     public class Person : IPerson, IAlter, IGehalt, INachname
     {
