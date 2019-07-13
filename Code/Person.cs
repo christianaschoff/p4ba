@@ -2,7 +2,7 @@ using System;
 
 namespace Code
 {
-    public class Person
+    public class Person : IPerson, IAlter, IGehalt, INachname
     {
         public string Vorname { get; }
         public string Nachname { get; }
