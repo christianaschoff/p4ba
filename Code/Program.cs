@@ -6,29 +6,34 @@ namespace Code
     {
         static void Main(string[] args)
         {
-            IPerson person1 = new Person("Christian", "Aschoff", 41, 1250, "München");
-            IPerson person2 = new Person("David", "Reher", 30, 1320.30, "Dortmund");
-            IPerson person3 = new Person("Jörg", "Krampitz", 41, 1450.50, "Hannover");
-            Writeblock(person1);
-            Writeblock(person2);
-            Writeblock(person3);
+            IMitarbeiter person1 = new Mitarbeiter(7,ABTEILUNG.DEVELOPMENT, LEVEL.SENIOR, "Christian", "Aschoff", 41, 1250, "München");
+            IFreiberufler person2 = new Freiberufler(870, PARTNERNETZ.SELBSTSTAENDIG, "Sven", "Wendt", 41, 2340.80, "Hamburg");
+            
+            WriteblockMitarbeiter(person1);
+            WriteblockFreiberufler(person2);       
+        }
 
-            IGehalt personGehalt = new Person("Christian", "Aschoff", 41, 1250, "München");
-            Console.WriteLine("Gehalt: " + personGehalt.Gehalt.ToString("###,###.00") + "€");
+        private static void WriteblockMitarbeiter(IMitarbeiter mitarbeiter) 
+        {
+            Writeblock(mitarbeiter as IPerson);
+            Console.WriteLine("\t Abteilung: " + mitarbeiter.Abteilung
+                             + "\t\t Level: " + mitarbeiter.Level 
+                             + "\t Betrieb: " + mitarbeiter.Betriebszugehoerigkeit);
+        }
 
-            IAlter personAlter = new Person("Christian", "Aschoff", 41, 1250, "München");
-            Console.WriteLine("Alter: " + personAlter.Alter);
-
-            INachname personNachname = new Person("Christian", "Aschoff", 41, 1250, "München");
-            Console.WriteLine("Nachname: " + personNachname.Nachname);
+        private static void WriteblockFreiberufler(IFreiberufler freiberufler) 
+        {
+            Writeblock(freiberufler as IPerson);
+            Console.WriteLine("\t Partnernetz: " + freiberufler.Partnernetz
+                             + "\t Tagessatz: " + freiberufler.Tagessatz.ToString("###,###.00") + "€");
         }
 
         private static void Writeblock(IPerson pers)
         {
-            Console.WriteLine("Name: " + pers.Nachname + "," + pers.Vorname
-                              + "\t Alter:" + pers.Alter
-                              + "\t Gehalt:" + pers.Gehalt.ToString("###,###.00") + "€"
-                              + "\t Standort:" + pers.Standort);
+            Console.Write("Name: " + pers.Nachname + "," + pers.Vorname
+                        + "\t Alter:" + pers.Alter
+                        + "\t Gehalt:" + pers.Gehalt.ToString("###,###.00") + "€"
+                        + "\t Standort:" + pers.Standort);
         }
     }
 }
