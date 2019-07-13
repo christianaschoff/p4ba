@@ -8,7 +8,6 @@ namespace Test
         [Fact]
         public void Test1()
         {
-
         }
     }
 }
