@@ -9,17 +9,23 @@ namespace Code
     {
         static void Main(string[] args)
         {
-            ConsoleWriter consoleWriter = new ConsoleWriter();
+            IKostenrechner kostenrechner = new Kostenrechner();
+            IForecast forecast = new Forecast();
 
             IMitarbeiter mitarbeiter = new Mitarbeiter("Christian", "Aschoff", 41, 1250, "München", 7, ABTEILUNG.DEVELOPMENT, LEVEL.SENIOR);
-            consoleWriter.Write(mitarbeiter);
-
-            IFreiberufler freiberufler = new Freiberufler("Sven", "Wendt", 41, 1350.50, "Hamburg", 980, PARTNERNETZ.SELBSTSTAENDIG);
-            consoleWriter.Write(freiberufler);
-
-            IKostenrechner kostenrechner = new Kostenrechner();
-            Console.WriteLine(mitarbeiter.Nachname + ": " + kostenrechner.BerechneJahresgehalt(mitarbeiter));
-            Console.WriteLine(freiberufler.Nachname + ": " + kostenrechner.BerechneJahreskosten(freiberufler));
+            double gehalt = kostenrechner.BerechneJahresgehalt(mitarbeiter);
+            
+            Console.WriteLine(mitarbeiter.Vorname + " " + mitarbeiter.Nachname + " Grundgehalt: " + gehalt.ToString("#,###.00 €"));
+            
+            for(int i=1; i <= 5; i++) {
+                gehalt = forecast.Gehaltsentwicklung(gehalt);
+                 Console.WriteLine("Gehaltsentwicklung von " 
+                                    + mitarbeiter.Vorname + " " 
+                                    + mitarbeiter.Nachname + " " 
+                                    + " im " + i + ". Jahr: "
+                                    + gehalt.ToString("#,###.00 €"));
+            }
+            
         }
     }
 }
