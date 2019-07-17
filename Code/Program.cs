@@ -25,7 +25,13 @@ namespace Code
                                     + " im " + i + ". Jahr: "
                                     + gehalt.ToString("#,###.00 €"));
             }
-            
+
+            Auslastung auslastung = new Auslastung();
+            for(int i = 210; i >= 0; i-=60)
+            {
+                Console.WriteLine("Auslastung ist bei " + i + " Tage(n) " + auslastung.BerechneAuslastungsstatus(i));
+            }
+           
         }
     }
 }
