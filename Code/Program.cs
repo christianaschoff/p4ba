@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using Model;
 using Contract;
 using Rules;
-using System.Collections.Generic;
 
 namespace Code
 {
@@ -22,10 +21,6 @@ namespace Code
             for(int i=0; i < liste.Length; i++) 
             {
                 liste[i] = new String('A', i+1);
-            }
-            for(int i = 0; i < liste.Length; i++) 
-            {
-                Console.WriteLine(liste[i]);
             }
 
             List<string> listeGeneric = new List<string>();
