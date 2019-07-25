@@ -12,7 +12,7 @@ namespace Test
         public void BerechneJahresgehalt_1000_12000()
         {
             //Arrange
-            IMitarbeiter mitarbeiterStub = new Mitarbeiter(null, null, 0, 1000, null, 0, ABTEILUNG.HR, LEVEL.MANAGER);
+            IMitarbeiter mitarbeiterStub = ErstelleMitarbeiter(1000);
             IKostenrechner kostenrechner = new Kostenrechner();
 
             //Act
@@ -24,6 +24,21 @@ namespace Test
         }
 
         [Fact]
+        public void BerechneJahresgehalt_0_0()
+        {
+            //Arrange
+            IMitarbeiter mitarbeiterStub = ErstelleMitarbeiter(0);
+            IKostenrechner kostenrechner = new Kostenrechner();
+
+            //Act
+            double result = kostenrechner.BerechneJahresgehalt(mitarbeiterStub);
+
+
+            //Assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
         public void BerechneJahresgehalt_nullObject_throwsException()
         {
             IMitarbeiter mitarbeiterStub = null;
@@ -32,6 +47,28 @@ namespace Test
             Action action = () => kostenrechner.BerechneJahresgehalt(mitarbeiterStub);
 
             Assert.Throws<NullReferenceException>(action);
+        }
+
+        [Fact]
+        public void BerechneJahresgehalt_negative_throwsException()
+        {
+            //Arrange
+            IMitarbeiter mitarbeiterStub = ErstelleMitarbeiter(-1);
+            IKostenrechner kostenrechner = new Kostenrechner();
+
+            //Act
+            Action action = () => kostenrechner.BerechneJahresgehalt(mitarbeiterStub);
+
+
+            //Assert
+            Exception exception = Assert.Throws<ArgumentOutOfRangeException>(action);
+
+            Assert.Contains("Das Gehalt darf nicht negativ sein", exception.Message);
+        }   
+        
+        private IMitarbeiter ErstelleMitarbeiter(double gehalt)
+        {
+            return new Mitarbeiter(null, null, 0, gehalt, null, 0, ABTEILUNG.HR, LEVEL.MANAGER);
         }
     }
 }

@@ -7,6 +7,16 @@ namespace Rules
     {
         public double BerechneJahresgehalt(IMitarbeiter mitarbeiter)
         {
+            if(mitarbeiter.Gehalt == 0)
+            {
+                return 0;
+            }
+
+            if(mitarbeiter.Gehalt < 0)
+            {
+                throw new ArgumentOutOfRangeException("mitarbeiter.Gehalt", mitarbeiter.Gehalt, "Das Gehalt darf nicht negativ sein");
+            }
+
             double jahresgehalt = mitarbeiter.Gehalt * 12;
             return jahresgehalt;
         }
