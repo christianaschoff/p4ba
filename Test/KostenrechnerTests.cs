@@ -22,5 +22,16 @@ namespace Test
             //Assert
             Assert.Equal(12000, result);
         }
+
+        [Fact]
+        public void BerechneJahresgehalt_nullObject_throwsException()
+        {
+            IMitarbeiter mitarbeiterStub = null;
+            IKostenrechner kostenrechner = new Kostenrechner();
+
+            Action action = () => kostenrechner.BerechneJahresgehalt(mitarbeiterStub);
+
+            Assert.Throws<NullReferenceException>(action);
+        }
     }
 }
