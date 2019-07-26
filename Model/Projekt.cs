@@ -9,7 +9,7 @@ namespace Model
 
         public List<IFreiberufler> Freiberufler { get; }
 
-        public string Name { get; set; }
+        public string Name { get; }
 
         public Projekt(string name)
         {

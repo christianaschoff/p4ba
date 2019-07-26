@@ -70,5 +70,38 @@ namespace Test
         {
             return new Mitarbeiter(null, null, 0, gehalt, null, 0, ABTEILUNG.HR, LEVEL.MANAGER);
         }
+
+
+        //Stub sample with private class 
+        class MitarbeiterStub : IMitarbeiter
+        {
+            public int Betriebszugehoerigkeit { get; }
+            public ABTEILUNG Abteilung { get; }
+            public LEVEL Level { get; }
+            public string Vorname { get; }
+            public string Nachname { get; }
+            public int Alter { get; }
+            public double Gehalt { get; }
+            public string Standort { get; }
+            public MitarbeiterStub(int gehalt)
+            {   
+                this.Gehalt = gehalt;
+            }
+        }
+        
+        [Fact]
+        public void BerechneJahresgehalt_1500_18000()
+        {
+            //Arrange
+            IMitarbeiter mitarbeiterStub = new MitarbeiterStub(1500);
+            IKostenrechner kostenrechner = new Kostenrechner();
+
+            //Act
+            double result = kostenrechner.BerechneJahresgehalt(mitarbeiterStub);
+
+
+            //Assert
+            Assert.Equal(18000, result);
+        }
     }
 }

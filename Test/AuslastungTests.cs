@@ -1,10 +1,6 @@
-using System;
 using Xunit;
 using Contract;
-using Model;
 using Rules;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Test
 {

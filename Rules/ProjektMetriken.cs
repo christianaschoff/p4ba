@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Contract;
-using Model;
 
 namespace Rules
 {
