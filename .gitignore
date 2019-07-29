@@ -9,3 +9,5 @@ Model/obj/*
 Model/bin/*
 Rules/obj/*
 Rules/bin/*
+Api/obj/*
+Api/bin/*

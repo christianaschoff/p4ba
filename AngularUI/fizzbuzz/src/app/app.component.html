@@ -1,0 +1,39 @@
+<div class="container px-lg-5">
+  <h1>Fizz Buzz Calculator</h1>
+  
+  <div class="row">
+      <div class="col-sm-5 col-12">
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">From</span>
+          </div>
+          <input class="form-control" placeholder="First Value" type="text" #one />
+      </div>
+    </div>
+    <div class="col-sm-5 col-12">
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Until</span>
+          </div>
+          <input class="form-control" placeholder="Second Value" type="text" #two />
+      </div>
+    </div>
+    <div class="col-sm-2 col-12">
+      <button class="btn btn-primary" (click)="checkOneValue(one.value, two.value)">Calculate</button>
+    </div>
+  </div>
+
+  <div *ngIf="(lst$ | async)">
+    <h2>Result for range: {{one.value}} - {{two.value}}</h2>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item 
+      {{val === 'buzz'? 'list-group-item-primary':''}}
+      {{val === 'fizz'? 'list-group-item-secondary':''}}
+      {{val === 'fizzbuzz'? 'list-group-item-success':''}}" 
+      *ngFor="let val of (lst$ | async); index as i">
+      {{i + +one.value}}: {{val}} 
+    </li>
+  </ul>
+</div>
+
