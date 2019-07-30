@@ -11,6 +11,7 @@ import { distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   single$: Observable<string>;
   lst$: Observable<string[]>;
+  error$: Observable<string>;
 
   private firstValue$ = new Subject<string>();
   private secondValue$ = new Subject<string>();
@@ -38,9 +39,45 @@ export class AppComponent implements OnInit {
     );
   }
 
-  checkOneValue(one: string, two: string) {
-    this.firstValue$.next(one);
-    this.secondValue$.next(two);
+  calculateFizzBuzz(one: string, two: string) {
+    if (this.checkValue(one) && this.checkValue(two) && this.checkValueOneBiggerTwo(one, two)) {
+      this.firstValue$.next(one);
+      this.secondValue$.next(two);
+    }
   }
 
+  checkValueOneBiggerTwo(one: string, two: string): boolean {
+    const num1 = Number(one);
+    const num2 = Number(two);
+
+    if (num1 >= num2) {
+      this.error$ = of('From value must be smaller than Until value.');
+      return false;
+    }
+    return true;
+  }
+
+  checkValue(value: string): boolean {
+      if (!value) {
+        this.error$ = of('Value must be provided');
+        return false;
+      }
+      const num = Number(value);
+      if (!(num)) {
+        this.error$ = of('Value must be a number bigger than 1.');
+        return false;
+      }
+
+      if (num < 1) {
+        this.error$ = of('Value must not be bigger than 1.');
+        return false;
+      }
+
+      if (num > 100) {
+        this.error$ = of('Value must not be smaller than 100.');
+        return false;
+      }
+      this.error$ = of(undefined);
+      return true;
+  }
 }

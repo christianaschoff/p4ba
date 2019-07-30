@@ -1,27 +1,37 @@
 <div class="container px-lg-5">
+ 
   <h1>Fizz Buzz Calculator</h1>
   
   <div class="row">
       <div class="col-sm-5 col-12">
-      <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">From</span>
-          </div>
-          <input class="form-control" placeholder="First Value" type="text" #one />
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">From</span>
+            </div>
+            <input class="form-control" placeholder="First Value" type="text" #one (blur)="checkValue(one.value)" />
+        </div>
       </div>
-    </div>
     <div class="col-sm-5 col-12">
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Until</span>
           </div>
-          <input class="form-control" placeholder="Second Value" type="text" #two />
+          <input class="form-control" placeholder="Second Value" type="text" #two (blur)="checkValue(two.value)" />
       </div>
     </div>
     <div class="col-sm-2 col-12">
-      <button class="btn btn-primary" (click)="checkOneValue(one.value, two.value)">Calculate</button>
+      <button class="btn btn-primary" (click)="calculateFizzBuzz(one.value, two.value)">Calculate</button>
     </div>
   </div>
+  
+    <div class="row" *ngIf="(error$ | async)">
+      <div class="col-12"> 
+        <div class="alert alert-danger" role="alert">
+        {{error$ | async}}
+        </div>
+      </div>
+    </div>
+ 
 
   <div *ngIf="(lst$ | async)">
     <h2>Result for range: {{one.value}} - {{two.value}}</h2>
