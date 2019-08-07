@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
   lst$: Observable<string[]>;
   error$: Observable<string>;
 
-  private firstValue$ = new Subject<string>();
-  private secondValue$ = new Subject<string>();
+  private firstValue$ = new Subject<Number>();
+  private secondValue$ = new Subject<Number>();
 
   constructor(private readonly apiService: ApiService) {
   }
@@ -28,12 +28,12 @@ export class AppComponent implements OnInit {
       }),
       map(x => x.result[0])
     );
-*/
+  */
     this.lst$ = combineLatest(this.firstValue$, this.secondValue$).pipe(
       distinctUntilChanged(),
       switchMap(([a, b]) => {
         if (!a || !b) { return of({result: []}); }
-        return this.apiService.getMulti(Number(a), Number(b));
+        return this.apiService.getMulti(a, b);
       }),
       map(x => x.result)
     );
@@ -41,8 +41,8 @@ export class AppComponent implements OnInit {
 
   calculateFizzBuzz(one: string, two: string) {
     if (this.checkValue(one) && this.checkValue(two) && this.checkValueOneBiggerTwo(one, two)) {
-      this.firstValue$.next(one);
-      this.secondValue$.next(two);
+      this.firstValue$.next(Number(one));
+      this.secondValue$.next(Number(two));
     }
   }
 

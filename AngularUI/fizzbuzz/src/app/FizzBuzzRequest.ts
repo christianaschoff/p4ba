@@ -1,4 +1,4 @@
 export class FizzBuzzRequest {
-    From: number;
-    Until: number;
+    From: Number;
+    Until: Number;
 }

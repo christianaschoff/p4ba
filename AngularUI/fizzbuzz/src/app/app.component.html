@@ -24,14 +24,13 @@
     </div>
   </div>
   
-    <div class="row" *ngIf="(error$ | async)">
-      <div class="col-12"> 
-        <div class="alert alert-danger" role="alert">
-        {{error$ | async}}
-        </div>
+  <div class="row" *ngIf="(error$ | async)">
+    <div class="col-12"> 
+      <div class="alert alert-danger" role="alert">
+      {{error$ | async}}
       </div>
     </div>
- 
+  </div>
 
   <div *ngIf="(lst$ | async)">
     <h2>Result for range: {{one.value}} - {{two.value}}</h2>
@@ -46,4 +45,3 @@
     </li>
   </ul>
 </div>
-

@@ -25,7 +25,7 @@ export class ApiService {
         catchError(this.handleError));
     }
 
-    getMulti(from: number, to: number): Observable<FizzBuzzResponse> {
+    getMulti(from: Number, to: Number): Observable<FizzBuzzResponse> {
          const request: FizzBuzzRequest = {From: from, Until: to};
         return this.http.post<FizzBuzzResponse>(this.apiUrl + '/', JSON.stringify(request), this.httpOptions)
         .pipe(

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Contract;
 using Contract.Api;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
